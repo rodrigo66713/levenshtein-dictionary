@@ -6,13 +6,8 @@
 #include "levenshtein_distance.h"
 
 int main() {
-    int a;
+    int table[MAX_CHAR][MAX_CHAR], a;
     char word_1[50], word_2[50]; 
-
-    assert((minValue(3, 4, 5)) == 3);
-    assert((minValue(4, 3, 5)) == 3);
-    assert((minValue(5, 4, 3)) == 3);
-    assert((minValue(3, 3, 3)) == 3);
 
     printf("\n1st Word: ");
     fgets(word_1, 50, stdin);
@@ -25,7 +20,16 @@ int main() {
     
     word_2[strcspn(word_2, "\n")] = '\0';
 
-    calculateDistance(word_1, word_2);
+    //Gets the length of the words;
+    int word_1_length = strlen(word_1),
+    word_2_length = strlen(word_2); 
+
+    createLevenshteinTable(table, word_1_length, word_2_length);
+
+    calculateDistance(table, word_1, word_2, 0, 0);
+
+    printf("Distance: %d", table[word_1_length][word_2_length]);
+
     scanf("%d", &a);
 
     return 0;

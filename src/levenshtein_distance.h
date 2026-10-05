@@ -4,8 +4,11 @@
 #define MAX_CHAR 50
 
 void calculateDistance(
+    int table[MAX_CHAR][MAX_CHAR],
     char word_1[MAX_CHAR], 
-    char word_2[MAX_CHAR]
+    char word_2[MAX_CHAR], 
+    int i,
+    int j
 );
 
 void createLevenshteinTable(
