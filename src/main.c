@@ -2,7 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include "levenshtein_distance.h"
+
 int main() {
+    int a;
     char word_1[50], word_2[50]; 
 
     printf("\n1st Word: ");
@@ -16,7 +19,8 @@ int main() {
     
     word_2[strcspn(word_2, "\n")] = '\0';
 
-    printf("\nWord 1: %s \nWord 2: %s", word_1, word_2);
+    calculateDistance(word_1, word_2);
+    scanf("%d", &a);
 
     return 0;
 }
