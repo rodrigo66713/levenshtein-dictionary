@@ -1,1 +1,1 @@
-"# levenshtein-dictionary" 
+# levenshtein-dictionary
