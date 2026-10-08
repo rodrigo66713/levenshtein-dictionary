@@ -7,28 +7,28 @@
 
 int main() {
     int table[MAX_CHAR][MAX_CHAR], a;
-    char word_1[50], word_2[50]; 
+    char word_1[MAX_CHAR], word_2[MAX_CHAR]; 
 
     printf("\n1st Word: ");
-    fgets(word_1, 50, stdin);
+    fgets(word_1, MAX_CHAR, stdin);
 
     //Gets the '\n' of the output and puts a null value in place
     word_1[strcspn(word_1, "\n")] = '\0';
 
     printf("\n2nd Word: ");
-    fgets(word_2, 50, stdin);
+    fgets(word_2, MAX_CHAR, stdin);
     
     word_2[strcspn(word_2, "\n")] = '\0';
 
     //Gets the length of the words;
-    int word_1_length = strlen(word_1),
-    word_2_length = strlen(word_2); 
+    int len_word_1 = strlen(word_1),
+    len_word_2 = strlen(word_2); 
 
-    createLevenshteinTable(table, word_1_length, word_2_length);
+    createLevenshteinTable(table, len_word_1, len_word_2);
 
-    calculateDistance(table, word_1, word_2, 0, 0);
+    calculateDistance(table, word_1, word_2, len_word_1, len_word_2, 1, 1);
 
-    printf("Distance: %d", table[word_1_length][word_2_length]);
+    printf("Distance: %d", table[len_word_1][len_word_2]);
 
     scanf("%d", &a);
 

@@ -7,14 +7,16 @@ void calculateDistance(
     int table[MAX_CHAR][MAX_CHAR],
     char word_1[MAX_CHAR], 
     char word_2[MAX_CHAR], 
+    int len_word_1, 
+    int len_word_2,
     int i,
     int j
 );
 
 void createLevenshteinTable(
     int table[MAX_CHAR][MAX_CHAR], 
-    int word_1_length, 
-    int word_2_lenght
+    int len_word_1, 
+    int len_word_2
 );
 
 int minValue(

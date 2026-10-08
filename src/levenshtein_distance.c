@@ -19,12 +19,15 @@ void calculateDistance(
     int table[MAX_CHAR][MAX_CHAR], 
     char word_1[MAX_CHAR], 
     char word_2[MAX_CHAR], 
+    int len_word_1, 
+    int len_word_2,
     int i, 
     int j
 ) {
     int remove, insert, substitution, cost = 0;
+    
     //recursive condition
-    if (i == strlen(word_2) && j == strlen(word_1)){
+    if (i == len_word_2 && j == len_word_1){
         return;
     }
 
@@ -38,16 +41,20 @@ void calculateDistance(
 
     table[i][j] = minValue(remove, insert, substitution);
     
-    if(j <= strlen(word_1)){
-        calculateDistance(table, word_1, word_2, i, j+1);
-    } else {
-        calculateDistance(table, word_1, word_2, i+1, 0);
+    if(j <= len_word_1){
+        calculateDistance(table, word_1, word_2, len_word_1, len_word_2, i, j+1);
+    } else if (i <= len_word_2){
+        calculateDistance(table, word_1, word_2, len_word_1, len_word_2, i+1, 1);
     }
 }
 
-void createLevenshteinTable(int table[MAX_CHAR][MAX_CHAR], int word_1_length, int word_2_length) {
-    for (int i = 0; i <= word_2_length; i++) {
-        for (int j = 0; j <= word_1_length; j++) {
+void createLevenshteinTable(
+    int table[MAX_CHAR][MAX_CHAR], 
+    int len_word_1, 
+    int len_word_2
+) {
+    for (int i = 0; i <= len_word_2; i++) {
+        for (int j = 0; j <= len_word_1; j++) {
             if (i == 0) {
                 table[i][j] = j;
             } else if (j == 0) {
