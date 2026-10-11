@@ -25,13 +25,8 @@ void calculateDistance(
     int j
 ) {
     int remove, insert, substitution, cost = 0;
-    
-    //recursive condition
-    if (i == len_word_2 && j == len_word_1){
-        return;
-    }
 
-    if (word_1[j] == word_2[i]) {
+    if (word_1[j-1] != word_2[i-1]) {
         cost = 1;
     }
 
@@ -40,11 +35,13 @@ void calculateDistance(
     substitution = table[i-1][j-1] + cost;
 
     table[i][j] = minValue(remove, insert, substitution);
-    
-    if(j <= len_word_1){
+
+    if(j < len_word_1){
         calculateDistance(table, word_1, word_2, len_word_1, len_word_2, i, j+1);
-    } else if (i <= len_word_2){
+    } else if (i < len_word_2){
         calculateDistance(table, word_1, word_2, len_word_1, len_word_2, i+1, 1);
+    } else if (i == len_word_2 && j == len_word_1){
+        return;
     }
 }
 
@@ -53,8 +50,8 @@ void createLevenshteinTable(
     int len_word_1, 
     int len_word_2
 ) {
-    for (int i = 0; i <= len_word_2; i++) {
-        for (int j = 0; j <= len_word_1; j++) {
+    for (int i = 0; i <= len_word_1; i++) {
+        for (int j = 0; j <= len_word_2; j++) {
             if (i == 0) {
                 table[i][j] = j;
             } else if (j == 0) {

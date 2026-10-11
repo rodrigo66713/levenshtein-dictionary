@@ -28,9 +28,7 @@ int main() {
 
     calculateDistance(table, word_1, word_2, len_word_1, len_word_2, 1, 1);
 
-    printf("Distance: %d", table[len_word_1][len_word_2]);
-
-    scanf("%d", &a);
+    printf("Distance: %d", table[len_word_2][len_word_1]);
 
     return 0;
 }
