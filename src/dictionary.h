@@ -8,6 +8,7 @@
 typedef struct {
     char word[MAX_CHAR];
     char meaning[MAX_MEANING];
+    int distance;
 } Entry;
 
 int loadDictionary(
@@ -20,13 +21,19 @@ void calculateAllDistances(
     int table[MAX_CHAR][MAX_CHAR],
     char input[MAX_CHAR],
     Entry entries[],
-    int total,
-    int distances[]
-);
-
-void printDistances(
-    Entry entries[],
-    int distances[],
     int total
 );
+
+void selectClosest(
+    Entry entries[],
+    int total, 
+    int how_many
+);
+
+void printClosest(
+    const Entry entries[], 
+    int total, 
+    int how_many
+);
+
 #endif

@@ -6,6 +6,8 @@
 #include "levenshtein_distance.h"
 #include "dictionary.h"
 
+#define SUGGESTIONS 5
+
 static Entry dictionary[MAX_ENTRIES];
 
 int main() {
@@ -14,15 +16,15 @@ int main() {
     printf("%d palavras carregadas.\n", total);
 
     int table[MAX_CHAR][MAX_CHAR];
-    int distances[MAX_ENTRIES];
     char input[MAX_CHAR];
 
     printf("Palavra: ");
     fgets(input, MAX_CHAR, stdin);
     input[strcspn(input, "\r\n")] = '\0';
 
-    calculateAllDistances(table, input, dictionary, total, distances);
-    printDistances(dictionary, distances, total);
+    calculateAllDistances(table, input, dictionary, total);
+    selectClosest(dictionary, total, SUGGESTIONS);
+    printClosest(dictionary, total, SUGGESTIONS);
 
     return 0;
 }

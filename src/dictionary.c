@@ -57,8 +57,7 @@ void calculateAllDistances(
     int table[MAX_CHAR][MAX_CHAR],
     char input[MAX_CHAR],
     Entry entries[],
-    int total,
-    int distances[]
+    int total
 ) {
     int len_input = strlen(input);
 
@@ -75,8 +74,44 @@ void calculateAllDistances(
         }
 
         // Linha = tamanho da palavra do dicionário, coluna = tamanho da entrada
-        distances[k] = table[len_word][len_input];
+        entries[k].distance = table[len_word][len_input];
     }
 }
 
+void selectClosest(
+    Entry entries[],
+    int total, 
+    int how_many
+) {
+    // Se o dicionário tiver menos palavras que o pedido, limita
+    int limit = (how_many < total) ? how_many : total;
 
+    for (int i = 0; i < limit; i++) {
+        int smallest = i;
+
+        for (int j = i + 1; j < total; j++) {
+            if (entries[j].distance < entries[smallest].distance) {
+                smallest = j;
+            }
+        }
+
+        if (smallest != i) {
+            Entry temp = entries[i];
+            entries[i] = entries[smallest];
+            entries[smallest] = temp;
+        }
+    }
+}
+
+void printClosest(
+    const Entry entries[], 
+    int total, 
+    int how_many
+) {
+    int limit = (how_many < total) ? how_many : total;
+
+    for (int i = 0; i < limit; i++) {
+        printf("%d. %s (distancia: %d)\n", i + 1, entries[i].word, entries[i].distance);
+        printf("   %s\n\n", entries[i].meaning);
+    }
+}
