@@ -1,1 +1,1 @@
-# levenshtein-dictionary
+# Dicionário de Levenshtein

@@ -26,7 +26,7 @@ int loadDictionary(const char *path, Entry entries[], int max_entries) {
             while ((c = fgetc(file)) != '\n' && c != EOF);
         }
 
-        // Remove '\n' e '\r' (arquivos criados no Windows)
+        // Remove '\n' e '\r' 
         line[strcspn(line, "\r\n")] = '\0';
 
         // Separa palavra e significado
@@ -64,10 +64,8 @@ void calculateAllDistances(
     for (int k = 0; k < total; k++) {
         int len_word = strlen(entries[k].word);
 
-        // Os tamanhos mudam a cada palavra, então a tabela é refeita
         createLevenshteinTable(table, len_input, len_word);
 
-        // Se uma das palavras é vazia, a resposta já está nos casos base
         if (len_input > 0 && len_word > 0) {
             calculateDistance(table, input, entries[k].word,
                               len_input, len_word, 1, 1);
@@ -83,7 +81,6 @@ void selectClosest(
     int total, 
     int how_many
 ) {
-    // Se o dicionário tiver menos palavras que o pedido, limita
     int limit = (how_many < total) ? how_many : total;
 
     for (int i = 0; i < limit; i++) {
