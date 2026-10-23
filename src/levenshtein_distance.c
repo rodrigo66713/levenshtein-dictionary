@@ -68,16 +68,16 @@ int minValue(
     int insert, 
     int substitution
 ) {
-    if (remove == substitution & remove == insert && substitution == insert){
+    if ((remove == substitution) && (remove == insert) && (substitution == insert)){
         return remove;
     }
-    else if (remove < insert && remove < substitution) {
+    else if ((remove < insert) && (remove < substitution)) {
         return remove;    
     } 
-    else if (insert < remove && insert < substitution){
+    else if ((insert < remove) && (insert < substitution)){
         return insert;
     } 
-    else if (substitution < remove && substitution < insert) {
+    else if ((substitution < remove) && (substitution < insert)) {
         return substitution;
     }
 }

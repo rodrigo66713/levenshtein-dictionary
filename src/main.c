@@ -4,10 +4,17 @@
 #include <assert.h>
 
 #include "levenshtein_distance.h"
+#include "dictionary.h"
+
+static Entry dictionary[MAX_ENTRIES];
 
 int main() {
-    int table[MAX_CHAR][MAX_CHAR], a;
+    int table[MAX_CHAR][MAX_CHAR];
     char word_1[MAX_CHAR], word_2[MAX_CHAR]; 
+
+    int total = loadDictionary("data/dictionary.txt", dictionary, MAX_ENTRIES);
+
+    printf("%d palavras carregadas.\n", total);
 
     printf("\n1st Word: ");
     fgets(word_1, MAX_CHAR, stdin);
