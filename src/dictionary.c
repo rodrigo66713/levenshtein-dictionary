@@ -52,3 +52,31 @@ int loadDictionary(const char *path, Entry entries[], int max_entries) {
     fclose(file);
     return count;
 }
+
+void calculateAllDistances(
+    int table[MAX_CHAR][MAX_CHAR],
+    char input[MAX_CHAR],
+    Entry entries[],
+    int total,
+    int distances[]
+) {
+    int len_input = strlen(input);
+
+    for (int k = 0; k < total; k++) {
+        int len_word = strlen(entries[k].word);
+
+        // Os tamanhos mudam a cada palavra, então a tabela é refeita
+        createLevenshteinTable(table, len_input, len_word);
+
+        // Se uma das palavras é vazia, a resposta já está nos casos base
+        if (len_input > 0 && len_word > 0) {
+            calculateDistance(table, input, entries[k].word,
+                              len_input, len_word, 1, 1);
+        }
+
+        // Linha = tamanho da palavra do dicionário, coluna = tamanho da entrada
+        distances[k] = table[len_word][len_input];
+    }
+}
+
+

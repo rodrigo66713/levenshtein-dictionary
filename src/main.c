@@ -9,33 +9,20 @@
 static Entry dictionary[MAX_ENTRIES];
 
 int main() {
-    int table[MAX_CHAR][MAX_CHAR];
-    char word_1[MAX_CHAR], word_2[MAX_CHAR]; 
-
     int total = loadDictionary("data/dictionary.txt", dictionary, MAX_ENTRIES);
 
     printf("%d palavras carregadas.\n", total);
 
-    printf("\n1st Word: ");
-    fgets(word_1, MAX_CHAR, stdin);
+    int table[MAX_CHAR][MAX_CHAR];
+    int distances[MAX_ENTRIES];
+    char input[MAX_CHAR];
 
-    //Gets the '\n' of the output and puts a null value in place
-    word_1[strcspn(word_1, "\n")] = '\0';
+    printf("Palavra: ");
+    fgets(input, MAX_CHAR, stdin);
+    input[strcspn(input, "\r\n")] = '\0';
 
-    printf("\n2nd Word: ");
-    fgets(word_2, MAX_CHAR, stdin);
-    
-    word_2[strcspn(word_2, "\n")] = '\0';
-
-    //Gets the length of the words;
-    int len_word_1 = strlen(word_1),
-    len_word_2 = strlen(word_2); 
-
-    createLevenshteinTable(table, len_word_1, len_word_2);
-
-    calculateDistance(table, word_1, word_2, len_word_1, len_word_2, 1, 1);
-
-    printf("Distance: %d", table[len_word_2][len_word_1]);
+    calculateAllDistances(table, input, dictionary, total, distances);
+    printDistances(dictionary, distances, total);
 
     return 0;
 }
