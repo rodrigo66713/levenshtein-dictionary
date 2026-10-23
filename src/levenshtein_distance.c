@@ -7,12 +7,12 @@
 /*
     1- Create Levenshtein's Table - STATUS: OK 
     
-    In a Loop - STATUS: ONGOING 
-        2- Calculate Remove, Insert and Substitution Values
+    In a Loop - STATUS: OK 
+        2- Calculate Remove, Insert and Substitution Values OK
         3- Calculate the minimun value between the three of them - STATUS: OK
-        4- Insert on the table
+        4- Insert on the table OK
     
-    5- Output the Final Distance
+    5- Output the Final Distance OK
 */
 
 void calculateDistance(
@@ -68,16 +68,16 @@ int minValue(
     int insert, 
     int substitution
 ) {
-    if (remove == substitution & remove == insert && substitution == insert){
+    if ((remove == substitution) && (remove == insert) && (substitution == insert)){
         return remove;
     }
-    else if (remove < insert && remove < substitution) {
+    else if ((remove < insert) && (remove < substitution)) {
         return remove;    
     } 
-    else if (insert < remove && insert < substitution){
+    else if ((insert < remove) && (insert < substitution)){
         return insert;
     } 
-    else if (substitution < remove && substitution < insert) {
+    else if ((substitution < remove) && (substitution < insert)) {
         return substitution;
     }
 }

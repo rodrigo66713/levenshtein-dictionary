@@ -1,34 +1,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <assert.h>
 
 #include "levenshtein_distance.h"
+#include "dictionary.h"
+
+#define SUGGESTIONS 5
+
+static Entry dictionary[MAX_ENTRIES];
 
 int main() {
-    int table[MAX_CHAR][MAX_CHAR], a;
-    char word_1[MAX_CHAR], word_2[MAX_CHAR]; 
+    int total = loadDictionary("data/dictionary.txt", dictionary, MAX_ENTRIES);
+    int table[MAX_CHAR][MAX_CHAR];
+    char input[MAX_CHAR];
 
-    printf("\n1st Word: ");
-    fgets(word_1, MAX_CHAR, stdin);
+    printf("===============================================================\n");
+    printf("               O DICIONARIO DE LEVENSHTEIN                     \n");
+    printf("===============================================================\n");
 
-    //Gets the '\n' of the output and puts a null value in place
-    word_1[strcspn(word_1, "\n")] = '\0';
+    printf("\n%d palavras carregadas.\n", total);
 
-    printf("\n2nd Word: ");
-    fgets(word_2, MAX_CHAR, stdin);
-    
-    word_2[strcspn(word_2, "\n")] = '\0';
+    while (1) {
+        printf("\nInsira uma palavra: ");
+        fgets(input, MAX_CHAR, stdin);
+        input[strcspn(input, "\r\n")] = '\0';
 
-    //Gets the length of the words;
-    int len_word_1 = strlen(word_1),
-    len_word_2 = strlen(word_2); 
+        calculateAllDistances(table, input, dictionary, total);
+        selectClosest(dictionary, total, SUGGESTIONS);
+        printClosest(dictionary, total, SUGGESTIONS);
+        
+        printf("\nAperte ENTER para continuar...");
+        getchar();
 
-    createLevenshteinTable(table, len_word_1, len_word_2);
-
-    calculateDistance(table, word_1, word_2, len_word_1, len_word_2, 1, 1);
-
-    printf("Distance: %d", table[len_word_2][len_word_1]);
+        // Clear the terminal
+        printf("\033[2J\033[H");
+    }
 
     return 0;
 }
