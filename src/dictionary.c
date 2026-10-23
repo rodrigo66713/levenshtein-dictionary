@@ -111,7 +111,9 @@ void printClosest(
     int limit = (how_many < total) ? how_many : total;
 
     for (int i = 0; i < limit; i++) {
-        printf("%d. %s (distancia: %d)\n", i + 1, entries[i].word, entries[i].distance);
-        printf("   %s\n\n", entries[i].meaning);
+        printf("\n===============================================================\n");
+        printf("%d. %s (Distancia: %d)\n", i + 1, entries[i].word, entries[i].distance);
+        printf("\n%s", entries[i].meaning);
+        printf("\n===============================================================\n");
     }
 }

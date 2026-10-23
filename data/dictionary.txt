@@ -1,4 +1,3 @@
-
 abacaxi;Fruta tropical de casca espinhosa e sabor doce
 abelha;Inseto que produz mel
 abajur;Objeto usado para iluminar ambientes
