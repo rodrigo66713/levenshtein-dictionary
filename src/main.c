@@ -11,16 +11,23 @@
 static Entry dictionary[MAX_ENTRIES];
 
 int main() {
+    // Força o console a rodar no formato UTF-8
     setupUtf8Console();
     
     int total = loadDictionary("data/dictionary.txt", dictionary, MAX_ENTRIES);
     int table[MAX_CHAR][MAX_CHAR];
     char input[MAX_CHAR];
     
+    // Sequencia ANSI que limpa o terminal
     printf("\033[2J\033[H");
+
     printf("===============================================================\n");
     printf("               O DICIONARIO DE LEVENSHTEIN                     \n");
     printf("===============================================================\n");
+
+    if (total < 0) {
+        return 1;    
+    }
 
     printf("\n%d palavras carregadas.\n", total);
 
@@ -37,7 +44,6 @@ int main() {
         printf("\nAperte ENTER para continuar...");
         getchar();
 
-        // Clear the terminal
         printf("\033[2J\033[H");
     }
 

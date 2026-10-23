@@ -5,14 +5,14 @@
 #include "levenshtein_distance.h"
 
 /*
-    1- Create Levenshtein's Table - STATUS: OK 
+    1- Criar Tabela Inicial de Levenshtein - STATUS: OK 
     
-    In a Loop - STATUS: OK 
-        2- Calculate Remove, Insert and Substitution Values OK
-        3- Calculate the minimun value between the three of them - STATUS: OK
-        4- Insert on the table OK
+    Em loop: - STATUS: OK 
+        2- Calcular os valores de Remoção, Inserção e Substituição - STATUS: OK
+        3- Calcular o valor mínimo entre os três - STATUS: OK
+        4- Inserir na tabela - STATUS: OK
     
-    5- Output the Final Distance OK
+    5- Exibir a Distância Final - STATUS: OK
 */
 
 void calculateDistance(

@@ -26,8 +26,8 @@ void setupUtf8Console(void) {
     original_input_cp = GetConsoleCP();
     original_output_cp = GetConsoleOutputCP();
 
-    SetConsoleCP(CP_UTF8);        // entrada (fgets)
-    SetConsoleOutputCP(CP_UTF8);  // saída (printf)
+    SetConsoleCP(CP_UTF8);        // entrada 
+    SetConsoleOutputCP(CP_UTF8);  // saída 
     atexit(restoreConsole);       // devolve o console ao estado original
 
     // Habilita sequências ANSI (usadas para limpar a tela)
@@ -39,6 +39,7 @@ void setupUtf8Console(void) {
 #endif
 }
 
+//Remove os acentos e caracteres especiais
 char removeAccent(unsigned char second_byte) {
     switch (second_byte) {
         // à á â ã ä  |  À Á Â Ã Ä
@@ -79,6 +80,7 @@ char removeAccent(unsigned char second_byte) {
     }
 }
 
+// Normaliza a entrada do usuário, deixando-as minúsculas e sem acentos.
 void normalizeWord(char *text) {
     int read = 0;
     int write = 0;
